@@ -16,11 +16,18 @@ def get_all_files() -> list[str]:
             files.append(os.path.join(root, filename))
     return files
 
-def convert_png_to_webp(file: str, relative_path: str):
+def convert_png_to_webp(file: str, out_file: str):
     im = Image.open(file)
-    output_path = os.path.join(OUT_DIR, os.path.splitext(relative_path)[0] + '.webp')
-    print(f"Converting {relative_path} to {output_path}")
-    im.save(output_path, 'webp')
+    im.save(fp=out_file, format='webp', optimize=True)
+    # get size of original file
+    original_size = os.path.getsize(file)
+    # get size of webp file
+    webp_size = os.path.getsize(file)
+    # calculate savings
+    savings = original_size - webp_size
+    # print savings
+    savings_perc = savings / original_size * 100
+    print(f"Converting {file} to {out_file}, Saved {savings} bytes ({savings_perc:.2f}%)")
 
 files = get_all_files()
 
@@ -52,9 +59,11 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
         file_ext = os.path.splitext(file)[1]
         if file_ext.lower() == ".png":
             # Transform png with transparency into a webp image
-            task = executor.submit(convert_png_to_webp, file, relative_path)
-            png_conversion_tasks.append(task)
-        if file_ext.lower() == ".html":
+            outfile = os.path.join(OUT_DIR, relative_path.replace(".png", ".webp"))
+            task = executor.submit(convert_png_to_webp, file, outfile)
+            #png_conversion_tasks.append(task)
+            task.result()
+        elif file_ext.lower() == ".html":
             # Read the file as UTF-8
             content = read_utf8(file)
             # Replace all .png with .webp
