@@ -29,6 +29,16 @@ os.makedirs(OUT_DIR, exist_ok=True)
 # Create a list to hold png conversion tasks
 png_conversion_tasks = []
 
+def read_utf8(file: str) -> str:
+    """Read a file as UTF-8."""
+    with open(file, "r", encoding="utf-8") as f:
+        return f.read()
+    
+def write_utf8(file: str, content: str):
+    """Write a file as UTF-8."""
+    with open(file, "w", encoding="utf-8") as f:
+        f.write(content)
+
 # Use a ProcessPoolExecutor to process png conversion in parallel
 with concurrent.futures.ThreadPoolExecutor() as executor:
     # Process each file
@@ -43,6 +53,13 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
             # Transform png with transparency into a webp image
             task = executor.submit(convert_png_to_webp, file, relative_path)
             png_conversion_tasks.append(task)
+        if file_ext.lower() == ".html":
+            # Read the file as UTF-8
+            content = read_utf8(file)
+            # Replace all .png with .webp
+            content = content.replace(".png", ".webp")
+            # Write the file as UTF-8
+            write_utf8(os.path.join(OUT_DIR, relative_path), content)
         else:
             shutil.copy(file, os.path.join(OUT_DIR, relative_path))
 
