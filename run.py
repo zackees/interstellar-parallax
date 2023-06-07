@@ -18,16 +18,21 @@ def get_all_files() -> list[str]:
 
 def convert_png_to_webp(file: str, out_file: str):
     im = Image.open(file)
+    # Reduce the image size by half
+    new_size = (im.width // 2, im.height // 2)
+    im.thumbnail(new_size)
+    # Save as webp
     im.save(fp=out_file, format='webp', optimize=True)
     # get size of original file
     original_size = os.path.getsize(file)
     # get size of webp file
-    webp_size = os.path.getsize(file)
+    webp_size = os.path.getsize(out_file)  # change 'file' to 'out_file'
     # calculate savings
     savings = original_size - webp_size
     # print savings
     savings_perc = savings / original_size * 100
     print(f"Converting {file} to {out_file}, Saved {savings} bytes ({savings_perc:.2f}%)")
+
 
 files = get_all_files()
 
