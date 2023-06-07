@@ -4,8 +4,9 @@ from PIL import Image
 import concurrent.futures
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DOCS_DIR = os.path.join(HERE, "docs")
-OUT_DIR = os.path.join(HERE, "out")
+HTML_DIR = os.path.join(HERE, "html")
+DOCS_DIR = os.path.join(HTML_DIR, "docs")
+OUT_DIR = os.path.join(HTML_DIR, "out")
 
 def get_all_files() -> list[str]:
     """Get all files in the docs directory."""
