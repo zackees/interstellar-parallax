@@ -4,14 +4,14 @@ from PIL import Image
 import concurrent.futures
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-HTML_DIR = os.path.join(HERE, "html")
-DOCS_DIR = os.path.join(HTML_DIR, "docs")
+HTML_DIR = os.path.join(HERE, "docs")
+SRC_DIR = os.path.join(HTML_DIR, "src")
 OUT_DIR = os.path.join(HTML_DIR, "out")
 
 def get_all_files() -> list[str]:
     """Get all files in the docs directory."""
     files = []
-    for root, _, filenames in os.walk(DOCS_DIR):
+    for root, _, filenames in os.walk(SRC_DIR):
         for filename in filenames:
             files.append(os.path.join(root, filename))
     return files
@@ -45,7 +45,7 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
     # Process each file
     for file in files:
         # Get the relative path of the file
-        relative_path = os.path.relpath(file, DOCS_DIR)
+        relative_path = os.path.relpath(file, SRC_DIR)
         # Create the directory in the output directory
         os.makedirs(os.path.join(OUT_DIR, os.path.dirname(relative_path)), exist_ok=True)
         # Copy the file to the output directory
