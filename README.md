@@ -2,4 +2,4 @@
 
 Demo:
 
-interstellar-parallax
+[https://zackees.github.io/interstellar-parallax/](https://zackees.github.io/interstellar-parallax/)
