@@ -1,7 +1,7 @@
 (function () {
     const elem = document.querySelector("#parallax");
 
-    const depthFactors = [0.0, 0.02, 0.06, 0.1];
+    const depthFactors = [0.0, 0.2, 0.6, 1.0];
 
     function calculateDepth(x, y) {
         let _w = window.innerWidth / 2;
@@ -19,11 +19,14 @@
     let y = 0; // start y at 0
     let startTime = performance.now(); // start time
 
+    // Maximum movement should be a percentage of window's height
+    const maxMovement = window.innerHeight * 0.5;
+
     function animate(time) {
         let timeFraction = (time - startTime) / 1000; // calculate the fraction of time that has passed
         if (timeFraction > 1) timeFraction = 1;
 
-        let newY = 270 * easeInOutCubic(timeFraction); // apply the easing function to the time fraction
+        let newY = maxMovement * easeInOutCubic(timeFraction); // apply the easing function to the time fraction
         let backgroundPosition = calculateDepth(x, newY);
 
         console.log(x, newY, backgroundPosition);
