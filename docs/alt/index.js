@@ -13,6 +13,9 @@
             loadedImages++;
             elemsWithImages[i].elem.style.backgroundImage = `url(${elemsWithImages[i].url})`;
             if (loadedImages === elemsWithImages.length) {
+                for (let j = 0; j < elemsWithImages.length; j++) {
+                    elemsWithImages[j].elem.classList.remove("parralax-preload");
+                }
                 startAnimation();
             }
         };

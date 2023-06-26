@@ -1,3 +1,7 @@
+.parralax-preload {
+    visibility: hidden;
+}
+
 #parallax-text {
     position: absolute;
     width: 100%;
