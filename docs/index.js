@@ -6,7 +6,7 @@
         document.querySelector("#parallax-background")
     ];
 
-    let depthFactors = [0.0, 0.0, -0.6, 1.0];
+    let depthFactors = [0.0, 0.0, -0.18, .3];
     const bias = 15.0;
     depthFactors = depthFactors.map(factor => factor * bias);
 
