@@ -1,7 +1,12 @@
 (function () {
-    const elem = document.querySelector("#parallax");
+    const elems = [
+        document.querySelector("#parallax-text"),
+        document.querySelector("#parallax-hero"),
+        document.querySelector("#parallax-triangle"),
+        document.querySelector("#parallax-background")
+    ];
 
-    let depthFactors = [0.0, 0.2, -0.6, 1.0];
+    let depthFactors = [0.0, 0.0, -0.6, 1.0];
     const bias = 15.0;
     depthFactors = depthFactors.map(factor => factor * bias);
 
@@ -10,7 +15,7 @@
         let _h = window.innerHeight / 2;
         let depths = depthFactors.map(factor => `${50 - (x - _w) * 0.0}% ${50 - (y - _h) * factor}%`);
         // Reverse the depths array to maintain the original order
-        return depths.reverse().join(", ");
+        return depths.reverse();
     }
 
     function easeInOutCubic(t) {
@@ -29,10 +34,14 @@
         if (timeFraction > 1) timeFraction = 1;
 
         let newY = maxMovement * easeInOutCubic(timeFraction); // apply the easing function to the time fraction
-        let backgroundPosition = calculateDepth(x, newY);
+        let backgroundPositions = calculateDepth(x, newY);
 
-        console.log(x, newY, backgroundPosition);
-        elem.style.backgroundPosition = backgroundPosition;
+        for (let i = 0; i < elems.length; i++) {
+            let elem = elems[i];
+            let backgroundPosition = backgroundPositions[i];
+            console.log(x, newY, backgroundPosition);
+            elem.style.backgroundPosition = backgroundPosition;
+        }
 
         if (timeFraction < 1) { // stop the animation after 1 second
             requestAnimationFrame(animate);
