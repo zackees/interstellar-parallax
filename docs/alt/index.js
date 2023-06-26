@@ -1,4 +1,6 @@
 (function () {
+    const DURATION = 2000;
+
     const elemsWithImages = [
         {elem: document.querySelector("#parallax-text"), url: "../imgs/Text_Main_Banner.webp"},
         {elem: document.querySelector("#parallax-hero"), url: "../imgs/Hero_Layer_Banner.webp"},
@@ -24,7 +26,7 @@
 
     const elems = elemsWithImages.map(obj => obj.elem);
 
-    let depthFactors = [0.001, 0.1, 0.18, .3];
+    let depthFactors = [0.005, 0.1, 0.18, .3];
     const bias = -15.0;
     depthFactors = depthFactors.map(factor => factor * bias);
 
@@ -47,9 +49,11 @@
     // Maximum movement should be a percentage of window's height
     const maxMovement = window.innerHeight * 0.5;
 
+
+
     function startAnimation() {
         function animate(time) {
-            let timeFraction = (time - startTime) / 1000; // calculate the fraction of time that has passed
+            let timeFraction = (time - startTime) / DURATION; // calculate the fraction of time that has passed
             if (timeFraction > 1) timeFraction = 1;
 
             let newY = maxMovement * easeInOutCubic(timeFraction); // apply the easing function to the time fraction
