@@ -1,5 +1,8 @@
 (function () {
-    const DURATION = 2000;
+    let params = new URLSearchParams(window.location.search);
+    let durationParam = params.get('duration');
+    
+    const DURATION = durationParam ? durationParam * 1000 : 1500;
 
     const elemsWithImages = [
         {elem: document.querySelector("#parallax-text"), url: "../imgs/Text_Main_Banner.webp"},
