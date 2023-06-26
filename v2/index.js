@@ -1,7 +1,9 @@
 (function () {
     const elem = document.querySelector("#parallax");
 
-    const depthFactors = [0.0, 0.2, 0.6, 1.0];
+    let depthFactors = [0.0, 0.2, 0.6, 1.0];
+    const bias = -9.0;
+    depthFactors = depthFactors.map(factor => factor * bias);
 
     function calculateDepth(x, y) {
         let _w = window.innerWidth / 2;
