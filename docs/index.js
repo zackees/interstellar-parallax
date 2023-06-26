@@ -1,8 +1,8 @@
 (function () {
     const elem = document.querySelector("#parallax");
 
-    let depthFactors = [0.0, 0.2, 0.6, 1.0];
-    const bias = -9.0;
+    let depthFactors = [0.0, 0.2, -0.6, 1.0];
+    const bias = 15.0;
     depthFactors = depthFactors.map(factor => factor * bias);
 
     function calculateDepth(x, y) {
