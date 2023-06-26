@@ -41,6 +41,7 @@
             let backgroundPosition = backgroundPositions[i];
             console.log(x, newY, backgroundPosition);
             elem.style.backgroundPosition = backgroundPosition;
+            elem.style.opacity = timeFraction; // change the opacity over time
         }
 
         if (timeFraction < 1) { // stop the animation after 1 second
