@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    background-color: #1d1e22;
+    height: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#parallax {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}
+
+#parallax-text {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-image: url(imgs/Text_Main_Banner.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 3;
+}
+
+#parallax-hero {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-image: url(imgs/Hero_Layer_Banner.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
+}
+
+#parallax-triangle {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-image: url(imgs/Triangle_Flare_Banner.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+
+#parallax-background {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-image: url(imgs/Background_Banner_Layer.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
+}
+
+h1 {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-family: "Arial";
+    text-transform: uppercase;
+    opacity: .2;
+    font-size: 70px;
+}
