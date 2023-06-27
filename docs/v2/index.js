@@ -28,7 +28,6 @@
     }
 
     const elems = elemsWithImages.map(obj => obj.elem);
-
     let depthFactors = [0.005, 0.1, 0.18, .3];
     const bias = -15.0;
     depthFactors = depthFactors.map(factor => factor * bias);
@@ -63,7 +62,7 @@
             for (let i = 0; i < elems.length; i++) {
                 let elem = elems[i];
                 let backgroundPosition = backgroundPositions[i];
-                console.log(x, newY, backgroundPosition);
+                // console.log(x, newY, backgroundPosition);
                 elem.style.backgroundPosition = backgroundPosition;
                 elem.style.opacity = timeFraction; // change the opacity over time
             }
