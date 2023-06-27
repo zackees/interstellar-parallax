@@ -47,14 +47,12 @@
 
     let x = window.innerWidth / 2; // default x to the center of the screen
     let y = 0; // start y at 0
-    let startTime = performance.now(); // start time
 
     // Maximum movement should be a percentage of window's height
     const maxMovement = window.innerHeight * 0.5;
 
-
-
     function startAnimation() {
+        let startTime = performance.now(); // start time
         function animate(time) {
             let timeFraction = (time - startTime) / DURATION; // calculate the fraction of time that has passed
             if (timeFraction > 1) timeFraction = 1;
